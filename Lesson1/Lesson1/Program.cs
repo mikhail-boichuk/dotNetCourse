@@ -43,13 +43,10 @@ namespace Lesson1
                 Console.WriteLine("wanna input again(y/n)?");
                 cont = Convert.ToString(Console.ReadLine());
 
-                if (cont == "y")
-                {
-                    continue;
-                } else
+                if (cont != "y")
                 {
                     break;
-                }
+                } 
             }
 
         }
