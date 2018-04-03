@@ -8,7 +8,7 @@ namespace Lesson1
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void AgeDetector()
         {
             String cont;
 
@@ -33,22 +33,60 @@ namespace Lesson1
                 {
                     Console.WriteLine("old man");
                 }
-                // we exclude one codition check, but in case of invalid input, programm will go thru all conditions anyway
-                /* else
-                {
-                    Console.WriteLine("invalid");
-                }
-                */
 
-                Console.WriteLine("wanna input again(y/n)?");
+                Console.WriteLine("wanna try again?(y/n)");
                 cont = Convert.ToString(Console.ReadLine());
 
                 if (cont != "y")
                 {
                     break;
-                } 
+                }
+            }
+        }
+
+        public static void Numbers()
+        {
+            int count = 0, posCount = 0, negCount = 0, totalSum = 0;
+            float avg;
+
+            while (true)
+            {
+                Console.WriteLine("please enter number");
+                var num = Convert.ToInt32(Console.ReadLine());
+
+                if (num == 0)
+                {
+                    if (count == 0)
+                    {
+                        Console.WriteLine("no numbers were entered");
+                        break;
+                    }
+                    avg = (float)totalSum / count;
+                    Console.WriteLine("Count: {0}\nPositive {1}\nNegative: {2}\nAverage: {3}", count, posCount, negCount, avg);
+                    break;
+                }
+                else
+                {
+                    count++;
+                    totalSum += num;
+                    if (num > 0)
+                    {
+                        posCount++;
+                    }
+                    else
+                    {
+                        negCount++;
+                    }
+                }
             }
 
+            Console.ReadLine();
+        }
+
+        static void Main(string[] args)
+        {
+            //AgeDetector();
+            Numbers();
         }
     }
 }
