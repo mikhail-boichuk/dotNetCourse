@@ -48,12 +48,13 @@ namespace Lesson1
         {
             int count = 0, posCount = 0, negCount = 0, totalSum = 0;
             float avg;
-
+            // My implementation below
+            /*
             while (true)
-            {
+            {   
                 Console.WriteLine("please enter number");
                 var num = Convert.ToInt32(Console.ReadLine());
-
+                
                 if (num == 0)
                 {
                     if (count == 0)
@@ -78,6 +79,39 @@ namespace Lesson1
                         negCount++;
                     }
                 }
+            }
+            */
+            //More appropriate implementation with divison by section
+
+            //input cycle
+            while (true)
+            {
+                Console.WriteLine("please enter number");
+                var num = Convert.ToInt32(Console.ReadLine());
+
+                //Numbers counters 
+                if (num > 0)
+                {
+                    posCount++;
+                } else if (num < 0)
+                {
+                    negCount++;
+                } else
+                {
+                    break;
+                }
+                count++;
+                totalSum += num;
+            }
+
+            //Calculations section and output
+            if (count != 0)
+            {
+                avg = (float)totalSum / count;
+                Console.WriteLine("Count: {0}\nPositive {1}\nNegative: {2}\nAverage: {3}", count, posCount, negCount, avg);
+            } else
+            {
+                Console.WriteLine("no numbers were entered");
             }
 
             Console.ReadLine();
