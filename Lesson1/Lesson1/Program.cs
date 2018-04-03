@@ -8,7 +8,7 @@ namespace Lesson1
 {
     class Program
     {
-        public static void AgeDetector()
+        static void AgeDetector()
         {
             String cont;
 
@@ -81,6 +81,7 @@ namespace Lesson1
                 }
             }
             */
+            
             //More appropriate implementation with divison by section
 
             //input cycle
@@ -89,7 +90,7 @@ namespace Lesson1
                 Console.WriteLine("please enter number");
                 var num = Convert.ToInt32(Console.ReadLine());
 
-                //Numbers counters 
+                //Update counters 
                 if (num > 0)
                 {
                     posCount++;
@@ -104,7 +105,7 @@ namespace Lesson1
                 totalSum += num;
             }
 
-            //Calculations section and output
+            //Calculations and output
             if (count != 0)
             {
                 avg = (float)totalSum / count;
@@ -117,10 +118,28 @@ namespace Lesson1
             Console.ReadLine();
         }
 
+        //in case of 'out' value MUST be modified
+        static void OutTest(out int val)
+        {
+            val = 10;
+        }
+
+        //in case of 'ref' value CAN be modified
+        static void RefTest(ref int val)
+        {
+            val = 8;
+        }
+
         static void Main(string[] args)
         {
             //AgeDetector();
             Numbers();
+
+            //test of 'ref' and 'out' keywords
+            //both passes reference to object into function, so function can modify object
+            int val = 25;
+            RefTest(ref val);
+            OutTest(out val);
         }
     }
 }
