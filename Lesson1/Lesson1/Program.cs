@@ -8,6 +8,12 @@ namespace Lesson1
 {
     class Program
     {
+        //Lesson 1. Topics:
+        //  - Types
+        //  - Operators
+        //  - Cycles
+        //  - 'in', 'ref', 'out' keywords
+
         static void AgeDetector()
         {
             String cont;
@@ -118,13 +124,13 @@ namespace Lesson1
             Console.ReadLine();
         }
 
-        //in case of 'out' value MUST be modified
+        //in case of 'out' value MUST be modified - !applies only for value types, no need for reference types!
         static void OutTest(out int val)
         {
             val = 10;
         }
 
-        //in case of 'ref' value CAN be modified
+        //in case of 'ref' value CAN be modified - !applies only for value types, no need for reference types!
         static void RefTest(ref int val)
         {
             val = 8;

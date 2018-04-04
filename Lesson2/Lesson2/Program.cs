@@ -6,13 +6,18 @@ using System.Threading.Tasks;
 
 namespace Lesson2
 {
+    //Lesson 2. Topics:
+    //  - Functions
+    //  - Arrays
+    //  - Lists
+
     enum Days { Monday = 1 , Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
     enum Attractions { Batman, Swan, Pony };
     enum Gender { male, female };
 
     class Program
     {
-        //aquire attrations available today
+        // Aquire attrations available today
         public static List<Attractions> GetAvailableAttr(Days day)
         {
             List<Attractions> avalaibleAttractions = new List<Attractions>();
@@ -33,7 +38,7 @@ namespace Lesson2
             return avalaibleAttractions;
         }
 
-        //match available attractions with kid's parameters
+        // Match available attractions with kid's parameters
         public static List<Attractions> MatchAttractions(int height, Gender gender, Days day)
         {
             List<Attractions> matchedAttractions = new List<Attractions>();
@@ -71,7 +76,7 @@ namespace Lesson2
             return matchedAttractions;
         }
 
-        //print list of matched attractions and kids name
+        // Print list of matched attractions and kids name
         public static void PrintMatchedAttrations (String name, List<Attractions> matchedAttractions)
         {
             Console.WriteLine("{0} can go to:", name);
@@ -87,12 +92,12 @@ namespace Lesson2
             }
         }
 
-        // handle more than one kid
-        static void FillIputData(int[] heights,Gender[] genders,String[] names)
+        // Get data for all kids
+        static void FillIputData(int[] heights,Gender[] genders,string[] names)
         {
-            for (int i = 0; i < heights.Length; i++)
+            for (int i = 0; i < names.Length; i++)
             {
-                // get data from commandline
+                // Get input from commandline
                 Console.WriteLine("Please enter kids name:");
                 names[i] = Convert.ToString(Console.ReadLine());
                 Console.WriteLine("Please enter kids height:");
@@ -111,23 +116,23 @@ namespace Lesson2
             // Input day
             Console.WriteLine("Please enter day of week:");
             Days day = (Days)Convert.ToInt32(Console.ReadLine());
-            //Input kids count
+            // Input kids count
             Console.WriteLine("Please enter kids count:");
             int kidsCount = Convert.ToInt32(Console.ReadLine());
-            // Allocate memry for arrays
+            // Allocate memory for arrays
             int[] heights = new int[kidsCount];
             Gender[] genders = new Gender[kidsCount];
-            String[] names = new String[kidsCount];
+            string[] names = new string[kidsCount];
 
             // Fill arrays with kids data
             FillIputData(heights, genders, names);
             
             for (int i = 0; i < kidsCount; i++)
             {
-                //print where kid can go today
+                // Print where kid can go today
                 PrintMatchedAttrations(names[i], MatchAttractions(heights[i], genders[i], day));
             }
-     
+            
             Console.ReadLine();
         }
     }
