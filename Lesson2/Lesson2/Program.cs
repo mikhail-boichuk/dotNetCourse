@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lesson2
 {
-    enum Days { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
+    enum Days { Monday = 1 , Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
     enum Attractions { Batman, Swan, Pony };
     enum Gender { male, female };
 
@@ -17,7 +17,7 @@ namespace Lesson2
         {
             List<Attractions> avalaibleAttractions = new List<Attractions>();
             
-            if (day == Days.Sunday)
+            if (day != Days.Sunday)
             {
                 avalaibleAttractions.Add(Attractions.Pony);
             }
@@ -39,6 +39,21 @@ namespace Lesson2
             List<Attractions> matchedAttractions = new List<Attractions>();
             foreach (Attractions attr in GetAvailableAttr(day))
             {
+                switch (attr)
+                {
+                    case Attractions.Batman:
+                        if (attr == Attractions.Batman && gender == Gender.male && height > 150)
+                            matchedAttractions.Add(attr);
+                        break;
+                    case Attractions.Swan:
+                        if ((gender == Gender.male && height < 140) || (gender == Gender.female && height > 120 && height < 140))
+                            matchedAttractions.Add(attr);
+                        break;
+                    case Attractions.Pony:
+                        matchedAttractions.Add(attr);
+                        break;         
+                }
+                /*(Implementation with else if)---------------------------
                 if (attr == Attractions.Batman && gender == Gender.male && height > 150)
                 {
                     matchedAttractions.Add(attr);
@@ -49,6 +64,7 @@ namespace Lesson2
                 {
                     matchedAttractions.Add(attr);
                 }
+                //-----------------------------------------------------*/
             }
             return matchedAttractions;
         }
