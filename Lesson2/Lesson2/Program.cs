@@ -53,7 +53,8 @@ namespace Lesson2
                         matchedAttractions.Add(attr);
                         break;         
                 }
-                /*(Implementation with else if)---------------------------
+                /*
+                //------------- Implementation with else if -----------
                 if (attr == Attractions.Batman && gender == Gender.male && height > 150)
                 {
                     matchedAttractions.Add(attr);
@@ -64,7 +65,8 @@ namespace Lesson2
                 {
                     matchedAttractions.Add(attr);
                 }
-                //-----------------------------------------------------*/
+                //-----------------------------------------------------
+                */
             }
             return matchedAttractions;
         }
@@ -85,24 +87,47 @@ namespace Lesson2
             }
         }
 
+        // handle more than one kid
+        static void FillIputData(int[] heights,Gender[] genders,String[] names)
+        {
+            for (int i = 0; i < heights.Length; i++)
+            {
+                // get data from commandline
+                Console.WriteLine("Please enter kids name:");
+                names[i] = Convert.ToString(Console.ReadLine());
+                Console.WriteLine("Please enter kids height:");
+                heights[i] = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Please enter gender:");
+                genders[i] = Gender.male;
+                if (Convert.ToString(Console.ReadLine()) == "female")
+                {
+                    genders[i] = Gender.female;
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
-            // get data from commandline
-            Console.WriteLine("Please enter kids name:");
-            String name = Convert.ToString(Console.ReadLine());
-            Console.WriteLine("Please enter kids height:");
-            int height = Convert.ToInt32(Console.ReadLine());
+            // Input day
             Console.WriteLine("Please enter day of week:");
             Days day = (Days)Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter gender:");
-            Gender gender = Gender.male; 
-            if (Convert.ToString(Console.ReadLine()) == "female")
-            {
-                gender = Gender.female;
-            }
+            //Input kids count
+            Console.WriteLine("Please enter kids count:");
+            int kidsCount = Convert.ToInt32(Console.ReadLine());
+            // Allocate memry for arrays
+            int[] heights = new int[kidsCount];
+            Gender[] genders = new Gender[kidsCount];
+            String[] names = new String[kidsCount];
 
-            //print where kid can go today
-            PrintMatchedAttrations(name, MatchAttractions(height, gender, day));
+            // Fill arrays with kids data
+            FillIputData(heights, genders, names);
+            
+            for (int i = 0; i < kidsCount; i++)
+            {
+                //print where kid can go today
+                PrintMatchedAttrations(names[i], MatchAttractions(heights[i], genders[i], day));
+            }
+     
             Console.ReadLine();
         }
     }
