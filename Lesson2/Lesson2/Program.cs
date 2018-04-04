@@ -10,6 +10,7 @@ namespace Lesson2
     //  - Functions
     //  - Arrays
     //  - Lists
+    //  - Exceptions handeling
 
     enum Days { Monday = 1 , Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
     enum Attractions { Batman, Swan, Pony };
@@ -44,6 +45,7 @@ namespace Lesson2
             List<Attractions> matchedAttractions = new List<Attractions>();
             foreach (Attractions attr in GetAvailableAttr(day))
             {
+                //------------- Implementation with switch -------------
                 switch (attr)
                 {
                     case Attractions.Batman:
@@ -93,20 +95,30 @@ namespace Lesson2
         }
 
         // Get data for all kids
-        static void FillIputData(int[] heights,Gender[] genders,string[] names)
+        static void FillIputData(int[] heights, Gender[] genders,string[] names)
         {
+            // Get input from commandline
             for (int i = 0; i < names.Length; i++)
             {
-                // Get input from commandline
-                Console.WriteLine("Please enter kids name:");
-                names[i] = Convert.ToString(Console.ReadLine());
-                Console.WriteLine("Please enter kids height:");
-                heights[i] = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Please enter gender:");
-                genders[i] = Gender.male;
-                if (Convert.ToString(Console.ReadLine()) == "female")
+                // Handle incorrect input
+                try
                 {
-                    genders[i] = Gender.female;
+                    Console.WriteLine("Please enter kids name:");
+                    names[i] = Convert.ToString(Console.ReadLine());
+                    Console.WriteLine("Please enter kids height:");
+                    heights[i] = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Please enter gender:");
+                    genders[i] = Gender.male;
+                    if (Convert.ToString(Console.ReadLine()) == "female")
+                    {
+                        genders[i] = Gender.female;
+                    }
+                }
+                catch (FormatException e)
+                {
+                    // We can analyze exception details and decide whether we what/can handle it or throw exception 
+                    Console.WriteLine("{0} : Incorrect input format\n {1} \n\nWill set height to 0", e.GetType().Name, e.StackTrace);
+                    heights[i] = 0;
                 }
             }
         }
