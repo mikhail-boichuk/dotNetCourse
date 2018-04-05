@@ -22,7 +22,7 @@ namespace Lesson3
 
             CofeeMachine coffeeDominator = new CofeeMachine(60, 70, 30);
 
-            coffeeDominator.PrepareCofee(1);
+            coffeeDominator.PrepareCofee(CoffeType.Americano);
             Console.ReadLine();
         }
     }

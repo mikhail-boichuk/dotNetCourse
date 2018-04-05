@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Lesson3
 {
+    public enum CoffeType { Espresso = 1, Americano };
     class CofeeMachine
     {
         private int _waterLevel;
         private int _waterTemperature;
         private int _coffeLevel;
-        public enum CoffeType { Espresso = 1, Americano };
         private const int MAX_LEVEL = 100;
 
 
@@ -68,7 +68,7 @@ namespace Lesson3
             }
         }
 
-        public void PrepareCofee(int coffeType)
+        public void PrepareCofee(CoffeType coffeType)
         {
             if (_waterLevel <= 10)
             {
@@ -82,7 +82,7 @@ namespace Lesson3
                 AddCoffeBeans();
             }
 
-            switch ((CoffeType)coffeType)
+            switch (coffeType)
             {
                 case CoffeType.Americano:
                     HeatWater(95);
@@ -96,7 +96,7 @@ namespace Lesson3
                     break;
             }
             _coffeLevel -= 10;
-            Console.WriteLine("Your {0} is ready! Bon apetit", (CoffeType)coffeType);
+            Console.WriteLine("Your {0} is ready! Bon apetit", coffeType);
         }
     }
 }
