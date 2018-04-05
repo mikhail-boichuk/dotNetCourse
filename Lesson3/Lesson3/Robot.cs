@@ -8,9 +8,9 @@ namespace Lesson3
 {
     class Robot
     {
-        string _name { get; }
-        string _material { get; }
-        int _bateryLevel = 100;
+        public string _name { get; }
+        public string _material { get; }
+        private int _bateryLevel = 100;
 
         public Robot(string name, string material)
         {
