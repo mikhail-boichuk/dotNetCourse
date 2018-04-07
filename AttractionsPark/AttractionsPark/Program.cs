@@ -16,16 +16,16 @@ namespace AttractionsPark
             Console.WriteLine("Please enter day of week:");
             Days day = (Days)Convert.ToInt32(Console.ReadLine());
             // Input kids count
-            //Console.WriteLine("Please enter kids count:");
-            //int kidsCount = Convert.ToInt32(Console.ReadLine());
-            // Input all kids
-            //List<Kid> kids = RegisterKids(kidsCount);
+            Console.WriteLine("Please enter kids count:");
+            int kidsCount = Convert.ToInt32(Console.ReadLine());
+            // Input kids list
+            List<Kid> kids = RegisterKids(kidsCount);
             
-            // Test pool of kids for fast debug
-            List<Kid> kids = new List<Kid>();
-            kids.Add(new Kid("Joe", Gender.male, -12, 145, -45, 100));
-            kids.Add(new Kid("Mary", Gender.female, 8, 125, 30, 90));
-            kids.Add(new Kid("Peter", Gender.male, 10, 125, 30, 20));
+            //// Test pool of kids for fast debug
+            //List<Kid> kids = new List<Kid>();
+            //kids.Add(new Kid("Joe", Gender.male, -12, 145, -45, 100));
+            //kids.Add(new Kid("Mary", Gender.female, 8, 125, 30, 90));
+            //kids.Add(new Kid("Peter", Gender.male, 10, 125, 30, 20));
             
             // Initialize attraction manager
             AttractionManager am = new AttractionManager(day);
