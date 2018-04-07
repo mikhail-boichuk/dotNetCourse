@@ -14,9 +14,8 @@ namespace AttractionsPark
         // Class fields
         private string _name;
         private Gender _gender;
-        private int _age, _height, _weight, _cash;
-        private int _satisfactionLevel = 0;
-        
+        private int _age, _height, _weight, _cash, _satisfactionLevel;
+
         // Class constants
         private const int MAX_AGE = 18; // years
         private const int MAX_HEIGHT = 180; // Centimeters
@@ -40,12 +39,13 @@ namespace AttractionsPark
             _height = NormalizeIfOutOfRange(height, MAX_HEIGHT);
             _weight = NormalizeIfOutOfRange(weight, MAX_WEIGHT);
             _cash = NormalizeIfOutOfRange(cash, MAX_CASH);
+            _satisfactionLevel = 0;
         }
 
         // Class interfaces --------------------------------------------------
-        public void RideAttraction (int cost)
+        public void RideAttraction (Attractions attraction, int cost)
         {
-            Console.WriteLine("{0} is riding on attraction");
+            Console.WriteLine("{0} is riding on {1}", _name, attraction);
             _cash -= cost;
             if (_satisfactionLevel <= MAX_SATISFACTION_LEVEL)
             {
@@ -60,9 +60,9 @@ namespace AttractionsPark
         {
             if ( _height <= MAX_HEIGHT)
             {
-                for (int i = 1; i <= 3; i++)
+                for (int i = 1; i <= 2; i++)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                     Console.WriteLine("{0} is crying...{1} sec", _name, i);
                 }
                 _height += 2;
@@ -76,7 +76,7 @@ namespace AttractionsPark
         // Normalization function for inputs --------------------------------------
         private int NormalizeIfOutOfRange(int val, int threshold)
         {
-            if (val <= 0 && val >= threshold)
+            if (val <= 0 || val > threshold)
             {
                 Console.WriteLine("info: one of kid's parameters is out of range - nomalizing {0} => {1}", val, threshold/2);
                 return threshold / 2;

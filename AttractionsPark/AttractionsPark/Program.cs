@@ -6,22 +6,68 @@ using System.Threading.Tasks;
 
 namespace AttractionsPark
 {
-    public enum Attractions { Batman, Swan, Pony };
     public enum Days { Monday = 1, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday };
 
     class Program
     {
         static void Main(string[] args)
-        {
+        {   
             // Input day
             Console.WriteLine("Please enter day of week:");
             Days day = (Days)Convert.ToInt32(Console.ReadLine());
             // Input kids count
-            Console.WriteLine("Please enter kids count:");
-            int kidsCount = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine("Please enter kids count:");
+            //int kidsCount = Convert.ToInt32(Console.ReadLine());
             // Input all kids
-            List<Kid> kids = RegisterKids(kidsCount);
+            //List<Kid> kids = RegisterKids(kidsCount);
+            
+            // Test pool of kids for fast debug
+            List<Kid> kids = new List<Kid>();
+            kids.Add(new Kid("Joe", Gender.male, -12, 145, -45, 100));
+            kids.Add(new Kid("Mary", Gender.female, 8, 125, 30, 90));
+            kids.Add(new Kid("Peter", Gender.male, 10, 125, 30, 20));
+            
+            // Initialize attraction manager
+            AttractionManager am = new AttractionManager(day);
+            
+            while (am.GetCashBox() < 200)
+            {
+                // Counter for kids that spent all money
+                int kidsWithNoMoney = 0;
+                // Let each kid ride on attraction
+                foreach (Kid k in kids)
+                {
+                    LetKidTryHisLuck(am, k);
+                    if (k.GetCash() < 10) kidsWithNoMoney++;
+                }
+                // If all kids are out of money - close park
+                if (kidsWithNoMoney == kids.Count)
+                {
+                    Console.WriteLine("Kids spent all of their money...");
+                    break;
+                }
+            }
 
+            ClosePark(kids);
+            Console.WriteLine("Money earned: {0}", am.GetCashBox());
+
+            // Few tests to be sure that interfaces of classes are working correctly
+            //// Test Kid class
+            //Kid joe = new Kid("Joe", Gender.male, -12, 145, -45, -85);
+            //joe.RideAttraction(Attractions.Batman, 20);
+            //joe.RideAttraction(Attractions.Pony, 10);
+            //joe.Cry();
+            //Console.WriteLine("name: {0}\nheight: {1}\nmoney left: {2}\nsatisfaction: {3}\n\n",
+            //    joe.GetName(), joe.GetHeight(), joe.GetCash(), joe.GetSatisfationLevel());
+
+            //// Test AttractionManager class
+            //AttractionManager am = new AttractionManager();
+            //am.TakeFee(joe, Attractions.Batman);
+            //Console.WriteLine("Cash in cashbox {0}", am.GetCashBox());
+            //am.TakeFee(joe, Attractions.Pony);
+            //Console.WriteLine("Cash in cashbox {0}", am.GetCashBox());
+
+            Console.ReadLine();
         }
 
 
@@ -36,28 +82,33 @@ namespace AttractionsPark
             return kids;
         }
 
-        public void LetKidTryHisLuck (Kid kid, Days day)
+        static void LetKidTryHisLuck (AttractionManager manager, Kid kid)
         {
-            List<Attractions> availableAttractions = MatchAttractions(kid.GetHeight(), kid.GetGender(), day);
-
-            foreach (Attractions attraction in availableAttractions)
+            var attractionsCount = Enum.GetNames(typeof(Attractions)).Length;
+            // Kid will try to go to all attractions
+            for (int i = 0; i < attractionsCount; i++)
             {
-
+                manager.TakeFee(kid, (Attractions)i);
             }
 
         }
 
-        public void ClosePark ()
+        // Close park
+        static void ClosePark (List<Kid> kidsInThePark)
         {
-
+            Console.WriteLine("--- The park is closed! ---");
+            foreach (Kid kid in kidsInThePark)
+            {
+                Console.WriteLine("{0} is {1}% happy, money left: {2}USD", kid.GetName(), kid.GetSatisfationLevel(), kid.GetCash());
+            }
         }
 
-        // Auxillary private methods ----------------------------------------
         // Read input and create kid
-        private static Kid ReadKidData()
+        static Kid ReadKidData()
         {
             int age, height, weight, cash;
 
+            Console.WriteLine("---- Adding new kid ----");
             Console.WriteLine("Please enter kid's name:");
             string name = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Please enter gender:");
@@ -80,58 +131,11 @@ namespace AttractionsPark
             }
             catch (FormatException e)
             {
-                Console.WriteLine("{0} : Incorrect input format\n {1} \n\n!!!--- Will set incorrect params to -1 ---!!!", e.GetType().Name, e.StackTrace);
+                Console.WriteLine("{0} : Incorrect input format\n {1} \n\n!!!--- Will set all kid's params to -1 ---!!!\n", e.GetType().Name, e.StackTrace);
                 age = height = weight = cash = -1;
             }
 
             return new Kid(name, gender, age, height, weight, cash);
         }
-
-        // Aquire attrations available today
-        private static List<Attractions> GetAvailableAttr(Days day)
-        {
-            List<Attractions> avalaibleAttractions = new List<Attractions>();
-
-            if (day != Days.Sunday)
-            {
-                avalaibleAttractions.Add(Attractions.Pony);
-            }
-            if (day == Days.Monday || day == Days.Wednesday || day == Days.Friday)
-            {
-                avalaibleAttractions.Add(Attractions.Batman);
-            }
-            if (day == Days.Tuesday || day == Days.Wednesday || day == Days.Thursday)
-            {
-                avalaibleAttractions.Add(Attractions.Swan);
-            }
-
-            return avalaibleAttractions;
-        }
-
-        // Match available attractions with kid's parameters
-        public static List<Attractions> MatchAttractions(int height, Gender gender, Days day)
-        {
-            List<Attractions> matchedAttractions = new List<Attractions>();
-            foreach (Attractions attr in GetAvailableAttr(day))
-            {
-                switch (attr)
-                {
-                    case Attractions.Batman:
-                        if (attr == Attractions.Batman && gender == Gender.male && height > 150)
-                            matchedAttractions.Add(attr);
-                        break;
-                    case Attractions.Swan:
-                        if ((gender == Gender.male && height < 140) || (gender == Gender.female && height > 120 && height < 140))
-                            matchedAttractions.Add(attr);
-                        break;
-                    case Attractions.Pony:
-                        matchedAttractions.Add(attr);
-                        break;
-                }
-            }
-            return matchedAttractions;
-        }
-
-        // -------------------------------------------------------------
     }
 }
