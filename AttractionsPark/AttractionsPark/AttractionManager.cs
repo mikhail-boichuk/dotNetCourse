@@ -13,11 +13,6 @@ namespace AttractionsPark
         private int _cashbox;
         private Days _day;
 
-        //Class constants
-        private const int BATMAN_COST = 20; // USD
-        private const int SWAN_COST = 10; // USD
-        private const int PONY_COST = 10; // USD
-
         // Class Contructor
         public AttractionManager (Days day)
         {
@@ -35,13 +30,13 @@ namespace AttractionsPark
             switch (attraction)
             {
                 case Attractions.Batman:
-                    cost = BATMAN_COST;
+                    cost = AttractionSettings.GetBatmanPrice();
                     break;
                 case Attractions.Swan:
-                    cost = SWAN_COST;
+                    cost = AttractionSettings.GetSwanPrice();
                     break;
                 case Attractions.Pony:
-                    cost = PONY_COST;
+                    cost = AttractionSettings.GetPonyPrice();
                     break;
             }
             // Check if kid can go to attraction
