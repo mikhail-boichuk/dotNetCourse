@@ -8,5 +8,9 @@ namespace AnimalsLibrary.Reptiles
 {
     public class Crocodile : Reptile
     {
+        public override void Eat()
+        {
+            Console.WriteLine("{0} is eating fish ant meat", this.GetType());
+        }
     }
 }

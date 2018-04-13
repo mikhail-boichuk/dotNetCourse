@@ -44,11 +44,16 @@
     <Compile Include="Fish\Fish.cs" />
     <Compile Include="Fish\GoldFish.cs" />
     <Compile Include="Fish\Shark.cs" />
+    <Compile Include="Interfaces\ICat.cs" />
+    <Compile Include="Interfaces\IDiver.cs" />
+    <Compile Include="Interfaces\IPredator.cs" />
     <Compile Include="Mammals\Horse.cs" />
     <Compile Include="Mammals\Lion.cs" />
     <Compile Include="Mammals\Mammal.cs" />
     <Compile Include="Mammals\Tiger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reptiles\Crocodile.cs" />
+    <Compile Include="Reptiles\Frog.cs" />
     <Compile Include="Reptiles\Lizard.cs" />
     <Compile Include="Reptiles\Reptile.cs" />
   </ItemGroup>

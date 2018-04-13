@@ -8,5 +8,9 @@ namespace AnimalsLibrary.Mammals
 {
     public class Horse : Mammal
     {
+        public override void Eat()
+        {
+            Console.WriteLine("{0} is eating grass", this.GetType());
+        }
     }
 }

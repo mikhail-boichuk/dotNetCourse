@@ -8,5 +8,9 @@ namespace AnimalsLibrary.Reptiles
 {
     public class Frog : Reptile
     {
+        public override void Eat()
+        {
+            Console.WriteLine("{0} is eating insects", this.GetType());
+        }
     }
 }
