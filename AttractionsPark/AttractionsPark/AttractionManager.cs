@@ -46,7 +46,7 @@ namespace AttractionsPark
                 _cashbox += cost;
             } else
             {
-                Console.WriteLine("{0} cannot go to {1}", kid.GetName(), attraction);
+                Console.WriteLine("{0} cannot go to {1}", kid.Name, attraction);
                 kid.Cry();
             }
         }

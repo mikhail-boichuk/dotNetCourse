@@ -99,7 +99,7 @@ namespace AttractionsPark
             Console.WriteLine("--- The park is closed! ---");
             foreach (Kid kid in kidsInThePark)
             {
-                Console.WriteLine("{0} is {1}% happy, money left: {2}USD", kid.GetName(), kid.GetSatisfationLevel(), kid.GetCash());
+                Console.WriteLine("{0} is {1}% happy, money left: {2}USD", kid.Name, kid.GetSatisfationLevel(), kid.GetCash());
             }
         }
 

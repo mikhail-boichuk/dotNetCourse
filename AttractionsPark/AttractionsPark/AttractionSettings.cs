@@ -8,10 +8,7 @@ namespace AttractionsPark
 {
     class AttractionSettings
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
+
         public static int GetBatmanPrice()
         {
             return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["BatmanPrice"]);

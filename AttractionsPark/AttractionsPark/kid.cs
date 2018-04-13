@@ -12,7 +12,7 @@ namespace AttractionsPark
     class Kid
     {
         // Class fields
-        private string _name;
+        public string Name { get; private set; }
         private Gender _gender;
         private int _age, _height, _weight, _cash, _satisfactionLevel;
 
@@ -26,7 +26,7 @@ namespace AttractionsPark
         // Class constructor
         public Kid (string name, Gender gendrer, int age, int height, int weight, int cash)
         {
-            _name = name;
+            Name = name;
             _gender = Gender.male;
             if (gendrer == Gender.female)
             {
@@ -45,14 +45,14 @@ namespace AttractionsPark
         // Class interfaces --------------------------------------------------
         public void RideAttraction (Attractions attraction, int cost)
         {
-            Console.WriteLine("{0} is riding on {1}", _name, attraction);
+            Console.WriteLine("{0} is riding on {1}", Name, attraction);
             _cash -= cost;
             if (_satisfactionLevel <= MAX_SATISFACTION_LEVEL)
             {
                 _satisfactionLevel += cost;
             } else
             {
-                Console.WriteLine("{0} is totally happy", _name);
+                Console.WriteLine("{0} is totally happy", Name);
             }
         }
 
@@ -63,12 +63,12 @@ namespace AttractionsPark
                 for (int i = 1; i <= 2; i++)
                 {
                     Thread.Sleep(100);
-                    Console.WriteLine("{0} is crying...{1} sec", _name, i);
+                    Console.WriteLine("{0} is crying...{1} sec", Name, i);
                 }
                 _height += 2;
             } else
             {
-                Console.WriteLine("{0} is too big to cry", _name);
+                Console.WriteLine("{0} is too big to cry", Name);
             }
         }
         //-------------------------------------------------------------------------
@@ -86,11 +86,6 @@ namespace AttractionsPark
         //-------------------------------------------------------------------------
 
         // Getters ----------------------------------------------------------------
-        public string GetName()
-        {
-            return _name;
-        }
-
         public Gender GetGender()
         {
             return _gender;
