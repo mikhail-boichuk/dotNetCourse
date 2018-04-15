@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalsLibrary.Interfaces
 {
-    interface IPredator
+    public interface IPredator
     {
         void NotSeatWithHerbivorous();
     }

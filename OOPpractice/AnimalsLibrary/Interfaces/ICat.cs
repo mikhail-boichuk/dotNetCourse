@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalsLibrary.Interfaces
 {
-    interface ICat
+    public interface ICat
     {
         void ClimbTree();
     }

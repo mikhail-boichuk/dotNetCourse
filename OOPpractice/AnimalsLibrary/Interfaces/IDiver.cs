@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalsLibrary.Interfaces
 {
-    interface IDiver
+    public interface IDiver
     {
         void Dive();
     }
