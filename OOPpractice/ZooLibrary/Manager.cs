@@ -8,7 +8,7 @@ using AnimalsLibrary.Interfaces;
 
 namespace ZooLibrary
 {
-    class Manager
+    public class Manager
     {
         public string Name { get; private set; }
 
