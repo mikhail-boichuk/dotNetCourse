@@ -65,9 +65,15 @@ namespace Delegates
 
         public void PrintPrices()
         {
-            foreach (KeyValuePair<string, int> price in prices)
+            if (prices.Count != 0)
             {
-                Console.WriteLine("Title: {0}, Price: {1}", price.Key, price.Value);
+                foreach (KeyValuePair<string, int> price in prices)
+                {
+                    Console.WriteLine("Title: {0}, Price: {1}", price.Key, price.Value);
+                }
+            } else
+            {
+                Console.WriteLine("Prices dictionary is empty");
             }
         }
 
