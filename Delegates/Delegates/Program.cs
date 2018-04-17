@@ -91,16 +91,24 @@ namespace Delegates
             db.AddBook("game of thrones", "Martin", 20, true);
             db.AddBook("kolobok", "unknown", 30, true);
 
+            // Pass delegate into class method
             //db.ProcessBooks(PrintTitle);
 
             PriceCounter totaller = new PriceCounter();
-            //db.ProcessBooks(totaller.AddBookToTotal);
+
+            // db.ProcessBooks(totaller.AddBookToTotal);
 
             //Console.WriteLine(totaller.AvaragePrice());
 
-            db.ProcessBooks(totaller.GetPrice);
+            // Declaring delegate as instance
+            DoSomethingWithBook getPrice = totaller.GetPrice;
+            DoSomethingWithBook totalBooks = totaller.AddBookToTotal;
+            // Delegates can be joined
+            DoSomethingWithBook joined = getPrice + totalBooks;
+            db.ProcessBooks(joined);
 
             totaller.PrintPrices();
+            Console.WriteLine("Average books price is {0}", totaller.AvaragePrice());
 
             Console.ReadLine();
         }
