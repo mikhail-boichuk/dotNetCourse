@@ -88,7 +88,7 @@ namespace Events
 
             bilko.StartGivingOrders();
 
-            Console.ReadLine();
+            Console.ReadLine(); 
         }
     }
 }
